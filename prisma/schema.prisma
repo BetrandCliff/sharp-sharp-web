@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(COMPANY_ADMIN)
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+}
+
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  status    CompanyStatus @default(PENDING)
+
+  users     User[]
+  drivers   Driver[]
+  vehicles  Vehicle[]
+}
+
+model Driver {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  status    String   @default("ACTIVE")
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+}
+
+model Vehicle {
+  id        String   @id @default(cuid())
+  plateNo   String
+  type      String
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+}
+
+enum Role {
+  SUPER_ADMIN
+  COMPANY_ADMIN
+}
+
+enum CompanyStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
