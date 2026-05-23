@@ -1,25 +1,23 @@
+// app/company/drivers/page.tsx
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+
 export default function DriversPage() {
-  const drivers = [
-    { id: 1, name: "John Doe", phone: "670000000" },
-    { id: 2, name: "Alice", phone: "680000000" },
-  ];
-
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold">Drivers</h1>
-
-      <div className="mt-4 space-y-3">
-        {drivers.map((d) => (
-          <div key={d.id} className="p-4 border rounded">
-            <p className="font-semibold">{d.name}</p>
-            <p className="text-gray-500">{d.phone}</p>
-          </div>
-        ))}
+    <div>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-4xl font-bold">Drivers</h1>
+          <p className="text-zinc-400">Manage your driver team</p>
+        </div>
+        <Button className="bg-orange-500 hover:bg-orange-600 text-black">
+          <Plus className="mr-2" /> Add New Driver
+        </Button>
       </div>
 
-      <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded">
-        + Add Driver
-      </button>
+      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+        <p className="text-center text-zinc-500 py-12">Driver list will appear here (Table coming soon)</p>
+      </div>
     </div>
   );
 }

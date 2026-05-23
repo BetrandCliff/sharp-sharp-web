@@ -1,21 +1,22 @@
-import Image from "next/image";
-export default function HomePage() {
+// app/page.tsx
+
+import Features from "./components/features";
+import CTA from "./components/finalcta";
+import Hero from "./components/hero";
+import HowItWorks from "./components/howitworks";
+import Navbar from "./components/navbar";
+import Testimonials from "./components/testimonial";
+
+
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <h1 className="text-4xl font-bold">Logistics Platform</h1>
-      <p className="mt-3 text-gray-600">
-        Manage drivers, vehicles and deliveries easily
-      </p>
-
-      <div className="mt-6 flex gap-4">
-        <a href="/auth/register" className="px-4 py-2 bg-blue-600 text-white rounded">
-          Company Signup
-        </a>
-
-        <a href="/auth/login" className="px-4 py-2 border rounded">
-          Login
-        </a>
-      </div>
-    </div>
+    <main className="min-h-screen bg-zinc-950 text-white overflow-hidden">
+      <Navbar />
+      <Hero />
+      <Features />
+      <HowItWorks />
+      <Testimonials />
+      <CTA />
+    </main>
   );
 }
