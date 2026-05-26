@@ -6,7 +6,7 @@ const testimonials = [
   {
     name: "Michael Okafor",
     role: "CEO, FastHaul Logistics",
-    content: "SharpLogistics transformed how we manage our fleet. The approval workflow and real-time tracking saved us countless hours.",
+    content: "Sharp-Sharp transformed how we manage our fleet. The approval workflow and real-time tracking saved us countless hours.",
     image: "🧔",
   },
   {
@@ -28,7 +28,7 @@ export default function Testimonials() {
     <section id="testimonials" className="py-24 bg-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-2xl md:text-2xl font-bold tracking-tight mb-4">
             Loved by logistics companies
           </h2>
         </div>
@@ -43,7 +43,7 @@ export default function Testimonials() {
               className="bg-zinc-950 border border-zinc-800 p-8 rounded-3xl"
             >
               <div className="text-4xl mb-6">{testimonial.image}</div>
-              <p className="text-lg leading-relaxed mb-8 text-zinc-300">
+              <p className="text-sm leading-relaxed mb-8 text-zinc-300">
                 "{testimonial.content}"
               </p>
               <div>

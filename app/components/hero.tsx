@@ -12,7 +12,7 @@ export default function Hero() {
         <div className="text-center max-w-4xl mx-auto">
            <BetaBadge />
 
-          <h1 className="text-6xl md:text-3xl font-bold tracking-tighter leading-tight mb-6">
+          <h1 className="text-3xl md:text-2xl font-bold tracking-tighter leading-tight mb-6">
             Logistics, <span className="text-orange-500">Simplified.</span>
           </h1>
 

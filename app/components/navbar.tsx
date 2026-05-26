@@ -32,7 +32,7 @@ export default function Navbar() {
           </Link>
           <Link 
             href="/auth/register"
-            className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-black font-semibold rounded-xl transition"
+            className="px-3 py-1 bg-orange-500 text-sm  hover:bg-orange-600 text-black font-normal rounded-xl transition"
           >
             Get Started
           </Link>

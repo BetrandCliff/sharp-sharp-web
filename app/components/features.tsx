@@ -41,10 +41,10 @@ export default function Features() {
     <section id="features" className="py-24 bg-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-3xl md:text-2xl font-bold tracking-tight mb-4">
             Everything you need to run<br />a modern logistics business
           </h2>
-          <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+          <p className="text-zinc-400 text-md max-w-2xl mx-auto">
             Built specifically for logistics companies who want efficiency and control.
           </p>
         </div>
@@ -61,8 +61,8 @@ export default function Features() {
               <div className="text-orange-500 mb-6 group-hover:scale-110 transition-transform">
                 {feature.icon}
               </div>
-              <h3 className="text-2xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-zinc-400">{feature.desc}</p>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="text-zinc-400 text-sm">{feature.desc}</p>
             </motion.div>
           ))}
         </div>

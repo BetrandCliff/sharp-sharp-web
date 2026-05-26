@@ -35,7 +35,7 @@ export default function HowItWorks() {
     <section id="how" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">
             Simple. Fast. Powerful.
           </h2>
           <p className="text-zinc-400 text-lg">Get started in 4 easy steps</p>
@@ -54,8 +54,8 @@ export default function HowItWorks() {
                 {step.icon}
               </div>
               <div className="text-orange-500 font-mono text-sm mb-2">{step.number}</div>
-              <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-              <p className="text-zinc-400">{step.desc}</p>
+              <h3 className="text-md font-semibold mb-3">{step.title}</h3>
+              <p className="text-zinc-400 text-sm">{step.desc}</p>
 
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-12 right-[-40px] w-20 h-px bg-gradient-to-r from-orange-500/30 to-transparent" />
