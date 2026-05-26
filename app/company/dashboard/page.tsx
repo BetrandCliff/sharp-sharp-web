@@ -160,7 +160,7 @@ export default function AdminDashboard() {
         {/* Bottom Section */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mt-10">
           {/* Activity */}
-          <div className="xl:col-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+          <div className="xl:col-span-2 bg-zinc-950 border border-zinc-800 rounded-md p-8">
             <h2 className="text-md font-bold mb-6">
               Recent Activity
             </h2>
@@ -174,7 +174,7 @@ export default function AdminDashboard() {
               ].map((activity, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-zinc-900"
+                  className="flex items-center gap-4 p-4 rounded-md bg-zinc-900"
                 >
                   <div className="w-3 h-3 rounded-md bg-orange-500" />
 

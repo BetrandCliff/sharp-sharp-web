@@ -1,67 +1,108 @@
 // components/HowItWorks.tsx
 "use client";
+
 import { motion } from "framer-motion";
-import { UserPlus, Truck, PackageCheck, BarChart } from "lucide-react";
+import {
+  UserPlus,
+  Truck,
+  PackageCheck,
+  BarChart3,
+} from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: <UserPlus className="w-10 h-10" />,
+    icon: UserPlus,
     title: "Register Your Company",
-    desc: "Sign up and get approved by our admin team within 24 hours.",
+    desc: "Create your company account and get verified quickly by our team.",
   },
   {
     number: "02",
-    icon: <Truck className="w-10 h-10" />,
-    title: "Add Vehicles & Drivers",
-    desc: "Build your fleet and onboard your drivers easily.",
+    icon: Truck,
+    title: "Add Fleet & Drivers",
+    desc: "Manage vehicles, onboard drivers, and organize your operations.",
   },
   {
     number: "03",
-    icon: <PackageCheck className="w-10 h-10" />,
-    title: "Create & Track Deliveries",
-    desc: "Dispatch orders and monitor everything in real-time.",
+    icon: PackageCheck,
+    title: "Track Deliveries",
+    desc: "Dispatch orders and monitor delivery progress in real time.",
   },
   {
     number: "04",
-    icon: <BarChart className="w-10 h-10" />,
-    title: "Grow Your Business",
-    desc: "Use insights and analytics to scale efficiently.",
+    icon: BarChart3,
+    title: "Scale Efficiently",
+    desc: "Use analytics and insights to improve performance and growth.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="py-24">
+    <section
+      id="how"
+      className="py-24 border-t border-zinc-800 bg-black"
+    >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">
+        {/* heading */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-[11px] text-zinc-400 mb-5">
+            How It Works
+          </div>
+
+          <h2 className="text-xl font-bold tracking-tight mb-3">
             Simple. Fast. Powerful.
           </h2>
-          <p className="text-zinc-400 text-lg">Get started in 4 easy steps</p>
+
+          <p className="text-sm text-zinc-400 max-w-2xl mx-auto leading-6">
+            Get started with Sharp-Sharp in just a few simple steps and
+            streamline your logistics operations effortlessly.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15 }}
-              className="relative text-center"
-            >
-              <div className="mx-auto w-24 h-24 bg-zinc-900 border border-zinc-700 rounded-2xl flex items-center justify-center text-orange-500 mb-6">
-                {step.icon}
-              </div>
-              <div className="text-orange-500 font-mono text-sm mb-2">{step.number}</div>
-              <h3 className="text-md font-semibold mb-3">{step.title}</h3>
-              <p className="text-zinc-400 text-sm">{step.desc}</p>
+        {/* steps */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
 
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-12 right-[-40px] w-20 h-px bg-gradient-to-r from-orange-500/30 to-transparent" />
-              )}
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.1,
+                }}
+                className="relative group bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-2xl p-7 transition-all duration-300"
+              >
+                {/* number */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400">
+                    <Icon size={20} />
+                  </div>
+
+                  <span className="text-[11px] font-medium text-zinc-600">
+                    {step.number}
+                  </span>
+                </div>
+
+                {/* content */}
+                <h3 className="text-sm font-semibold text-white mb-3">
+                  {step.title}
+                </h3>
+
+                <p className="text-sm text-zinc-400 leading-6">
+                  {step.desc}
+                </p>
+
+                {/* connector line */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-12 -right-3 w-6 h-px bg-gradient-to-r from-orange-500/40 to-transparent" />
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

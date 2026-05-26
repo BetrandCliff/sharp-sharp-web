@@ -98,19 +98,21 @@ export default function Sidebar({ role }: { role: Role }) {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-72 bg-zinc-950 border-r border-zinc-800 flex flex-col overflow-hidden">
+    <aside className="fixed left-0 top-0 h-screen w-52 bg-zinc-950 border-r border-zinc-800 flex flex-col overflow-hidden">
 
       {/* Logo */}
-      <div className="h-24 flex items-center px-8 border-b border-zinc-800">
-        <div className="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center mr-4 shadow-lg shadow-orange-500/30">
+      <div className="h-24  flex items-center px-8 border-b border-zinc-800">
+        <div className="w-8 h-8 rounded-md bg-orange-500 flex items-center justify-center mr-4 shadow-lg shadow-orange-500/30">
           <Truck className="text-black w-6 h-6" />
         </div>
 
         <div>
-          <h1 className="text-md font-black tracking-tight text-white">
-            Sharp-Sharp
+          <h1 className="text-[12px] font-black tracking-tight text-white">
+           {role === "admin"
+              ? "Sharp-Sharp"
+              : "Royal Suppler"}
           </h1>
-          <p className="text-xs text-zinc-500 text-[12px]">
+          <p className="text-[9px] text-zinc-500 ">
             {role === "admin"
               ? "Admin Platform"
               : "Company Platform"}
@@ -224,19 +226,19 @@ export default function Sidebar({ role }: { role: Role }) {
 
       {/* PROFILE */}
       <div className="p-5 border-t border-zinc-800">
-        <div className="bg-zinc-900 rounded-2xl p-4 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-md bg-orange-500 flex items-center justify-center text-black font-bold text-lg">
+        <div className="bg-zinc-900    rounded-md p-4 flex items-center gap-2">
+          <div className="w-10 h-10 rounded-md bg-orange-500 flex items-center justify-center text-black font-bold text-lg">
             A
           </div>
 
           <div>
-            <h3 className="font-semibold text-white text-[12px]">
+            <h3 className="font-semibold text-white text-[10px]">
               {role === "admin"
                 ? "Admin User"
                 : "Company User"}
             </h3>
 
-            <p className="text-[12px] text-zinc-500">
+            <p className="text-[8px] text-zinc-500">
               {role === "admin"
                 ? "Super Administrator"
                 : "Company Manager"}

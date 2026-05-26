@@ -18,11 +18,11 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-10">
-          <a href="#features" className="hover:text-orange-400 transition text-sm">Home</a>
-          <a href="#features" className="hover:text-orange-400 transition text-sm">Services</a>
+          <a href="#" className="hover:text-orange-400 transition text-sm">Home</a>
+          <a href="#services" className="hover:text-orange-400 transition text-sm">Services</a>
           <a href="#testimonials" className="hover:text-orange-400 transition text-sm">Testimonials</a>
-          <a href="#features" className="hover:text-orange-400 transition text-sm">About</a>
-          <a href="#features" className="hover:text-orange-400 transition text-sm">Contact Us</a>
+          <a href="#aboutPage" className="hover:text-orange-400 transition text-sm">About</a>
+          <a href="#contactPage" className="hover:text-orange-400 transition text-sm">Contact Us</a>
           {/* <a href="#how" className="hover:text-orange-400 transition text-sm">How it Works</a> */}
         </div>
 
@@ -32,7 +32,7 @@ export default function Navbar() {
           </Link>
           <Link 
             href="/auth/register"
-            className="px-3 py-1 bg-orange-500 text-sm  hover:bg-orange-600 text-black font-normal rounded-xl transition"
+            className="px-3 py-1 bg-orange-500 text-sm  hover:bg-orange-600 text-black font-normal rounded-md transition"
           >
             Get Started
           </Link>

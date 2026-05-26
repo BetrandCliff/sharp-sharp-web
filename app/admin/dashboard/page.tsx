@@ -276,7 +276,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* ACTIVITY FEED */}
-      <div className="mt-10 bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+      <div className="mt-10 bg-zinc-950 border border-zinc-800 rounded-md p-6">
         <h2 className="text-md font-bold mb-4">
           Recent Platform Activity
         </h2>
@@ -297,7 +297,7 @@ function Card({
   title,
   value,
   icon,
-  color,
+ 
 }: any) {
   return (
     <div className="bg-zinc-950 border border-zinc-800 p-6 rounded-3xl">

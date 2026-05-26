@@ -12,7 +12,7 @@ export default function Hero() {
         <div className="text-center max-w-4xl mx-auto">
            <BetaBadge />
 
-          <h1 className="text-3xl md:text-2xl font-bold tracking-tighter leading-tight mb-6">
+          <h1 className="text-xl md:text-xl font-bold tracking-tighter leading-tight mb-6">
             Logistics, <span className="text-orange-500">Simplified.</span>
           </h1>
 
@@ -24,13 +24,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/auth/register"
-              className="group px-4 py-3 bg-orange-500 hover:bg-orange-600 text-black font-semibold rounded-2xl flex items-center gap-3 text-sm transition-all hover:scale-105"
+              className="group px-4 py-3 bg-orange-500 hover:bg-orange-600 text-black font-semibold rounded-md flex items-center gap-3 text-sm transition-all hover:scale-105"
             >
               Start Free Trial
               <ArrowRight className="group-hover:translate-x-1 transition w-3 h-3" />
             </Link>
 
-            <button className="px-4 py-3 border border-zinc-700 hover:border-zinc-500 rounded-2xl flex items-center gap-3 text-sm transition">
+            <button className="px-4 py-3 border border-zinc-700 hover:border-zinc-500 rounded-md flex items-center gap-3 text-sm transition">
               <Play className="w-4 h-3" /> Watch Demo
             </button>
           </div>

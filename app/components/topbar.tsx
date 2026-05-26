@@ -13,7 +13,7 @@ export default function Topbar() {
         />
       </div>
 
-      <button className="w-12 h-12 rounded-2xl glass flex items-center justify-center">
+      <button className="w-12 h-12 rounded-md glass flex items-center justify-center">
         <Bell />
       </button>
     </div>

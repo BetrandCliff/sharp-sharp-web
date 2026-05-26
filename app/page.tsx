@@ -1,5 +1,7 @@
 // app/page.tsx
 
+import AboutPage from "./components/about";
+import ContactPage from "./components/contact";
 import Features from "./components/features";
 import CTA from "./components/finalcta";
 import Hero from "./components/hero";
@@ -17,6 +19,8 @@ export default function Home() {
       <HowItWorks />
       <Testimonials />
       <CTA />
+      <AboutPage/>
+      <ContactPage/>
     </main>
   );
 }
