@@ -9,7 +9,7 @@ export default function Hero() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden">
+    <section className="relative pt-10 pb-24 overflow-hidden bg-white dark:bg-zinc-950 text-slate-900 dark:text-white">
 
       {/* 🎬 BACKGROUND VIDEO */}
       <video
@@ -23,7 +23,7 @@ export default function Hero() {
       </video>
 
       {/* 🖤 DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-white/60 dark:bg-black/70" />
 
       {/* 🔥 ORANGE GLOW */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.12),transparent_55%)]" />
@@ -31,13 +31,11 @@ export default function Hero() {
       {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
 
-        <BetaBadge />
-
         <h1 className="text-xl font-bold tracking-tighter mb-6">
           Logistics, <span className="text-orange-500">Simplified.</span>
         </h1>
 
-        <p className="text-md text-zinc-400 max-w-2xl mx-auto mb-10">
+        <p className="text-md text-slate-500 dark:text-zinc-400 max-w-2xl mx-auto mb-10">
           Connect companies, drivers, and administrators in one platform.
           Manage deliveries and operations with ease.
         </p>
@@ -57,7 +55,7 @@ export default function Hero() {
           {/* WATCH DEMO BUTTON */}
           <button
             onClick={() => setOpen(true)}
-            className="px-4 py-3 border border-zinc-700 hover:border-zinc-500 rounded-md flex items-center gap-2 text-sm transition"
+            className="px-4 py-3 border border-slate-200 dark:border-zinc-700 hover:border-slate-400 dark:hover:border-zinc-500 rounded-md flex items-center gap-2 text-sm transition text-slate-700 dark:text-zinc-300"
           >
             <Play className="w-4 h-4" />
             Watch Demo
@@ -65,7 +63,7 @@ export default function Hero() {
 
         </div>
 
-        <p className="text-sm text-zinc-500 mt-6">
+        <p className="text-sm text-slate-500 dark:text-zinc-500 mt-6">
           No credit card required • 14-day free trial
         </p>
 

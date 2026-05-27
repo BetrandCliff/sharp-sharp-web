@@ -33,30 +33,30 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-24 border-t border-zinc-800 overflow-hidden"
+      className="relative py-24 border-t border-zinc-800 overflow-hidden bg-zinc-950"
     >
       {/* BACKGROUND IMAGE */}
       <Image
-        src="/images/testimonials/bg.png"
+        src="/images/testimonial/bg.png"
         alt="Testimonials background"
         fill
         className="object-cover opacity-20"
       />
 
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-zinc-950/85" />
 
       {/* orange glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.10),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.08),transparent_60%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* heading */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-black text-[11px] text-zinc-400 mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/80 text-[11px] text-zinc-400 mb-5">
             Testimonials
           </div>
 
-          <h2 className="text-xl font-bold tracking-tight mb-3">
+          <h2 className="text-xl font-bold tracking-tight mb-3 text-white">
             Trusted by logistics teams
           </h2>
 
@@ -75,7 +75,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-zinc-950/80 backdrop-blur border border-zinc-800 hover:border-zinc-700 rounded-2xl p-7 transition-all duration-300"
+              className="bg-zinc-900/60 backdrop-blur border border-zinc-800 hover:border-orange-500/30 rounded-2xl p-7 transition-all duration-300"
             >
               {/* stars */}
               <div className="flex items-center gap-1 mb-6">

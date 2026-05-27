@@ -1,4 +1,3 @@
-// app/auth/register/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -21,10 +20,14 @@ type FormData = {
   address: string;
   phone: string;
   email: string;
-  documents: File[];
+
+  companyDocuments: File[];
+
   ceoName: string;
   ceoEmail: string;
   ceoPhone: string;
+
+  ceoDocuments: File[];
 };
 
 export default function MultiStepRegister() {
@@ -37,10 +40,14 @@ export default function MultiStepRegister() {
     address: "",
     phone: "",
     email: "",
-    documents: [],
+
+    companyDocuments: [],
+
     ceoName: "",
     ceoEmail: "",
     ceoPhone: "",
+
+    ceoDocuments: [],
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,43 +58,54 @@ export default function MultiStepRegister() {
   };
 
   const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: "company" | "ceo"
   ) => {
     if (e.target.files) {
-      setFormData({
-        ...formData,
-        documents: Array.from(e.target.files),
-      });
+      const files = Array.from(e.target.files);
+
+      setFormData((prev) => ({
+        ...prev,
+
+        companyDocuments:
+          type === "company"
+            ? files
+            : prev.companyDocuments,
+
+        ceoDocuments:
+          type === "ceo"
+            ? files
+            : prev.ceoDocuments,
+      }));
     }
   };
 
   const nextStep = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    }
+    setStep(step + 1);
+    console.log("STEP IS ", step);
   };
 
   const prevStep = () => {
     if (step > 1) {
       setStep(step - 1);
     }
+    console.log("STEP IS ", step);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (step < 4) return;
 
     console.log("Submitted Data:", formData);
-
-    // alert("✅ Registration submitted successfully!");
-
-    // Navigate to dashboard
     router.push("/admin/dashboard");
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center p-6">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-6 transition-colors duration-300">
+
       <div className="w-full max-w-lg">
-        {/* Logo */}
+
+        {/* LOGO */}
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-3">
             <Link href="/">
@@ -102,13 +120,10 @@ export default function MultiStepRegister() {
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="flex justify-between mb-8 px-4">
-          {[1, 2, 3].map((s) => (
-            <div
-              key={s}
-              className="flex flex-col items-center"
-            >
+        {/* PROGRESS */}
+        <div className="flex justify-between mb-10 px-2">
+          {[1, 2, 3, 4].map((s) => (
+            <div key={s} className="flex flex-col items-center flex-1">
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all
                 ${
@@ -116,7 +131,7 @@ export default function MultiStepRegister() {
                     ? "bg-orange-500 border-orange-500 text-black"
                     : step > s
                     ? "bg-emerald-500 border-emerald-500 text-white"
-                    : "border-zinc-700 text-zinc-500"
+                    : "border-border text-muted-foreground"
                 }`}
               >
                 {step > s ? (
@@ -126,19 +141,22 @@ export default function MultiStepRegister() {
                 )}
               </div>
 
-              <p className="text-xs text-zinc-400 mt-2">
+              <p className="text-[11px] text-muted-foreground mt-2 text-center">
                 {s === 1 && "Company"}
-                {s === 2 && "Documents"}
+                {s === 2 && "Company Docs"}
                 {s === 3 && "CEO Info"}
+                {s === 4 && "CEO Docs"}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Form Card */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10">
+        {/* CARD — ONLY THIS LINE FIXED */}
+        <div className="bg-card text-card-foreground border border-border rounded-3xl p-10">
+
           <form onSubmit={handleSubmit}>
-            {/* ================= STEP 1 ================= */}
+
+            {/* STEP 1 */}
             {step === 1 && (
               <div>
                 <h2 className="text-2xl font-semibold text-center mb-8">
@@ -146,6 +164,7 @@ export default function MultiStepRegister() {
                 </h2>
 
                 <div className="space-y-6">
+
                   <div>
                     <Label htmlFor="companyName">
                       Company Name
@@ -172,13 +191,14 @@ export default function MultiStepRegister() {
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
-                      placeholder="Lagos, Nigeria"
+                      placeholder="Yaoundé, Cameroon"
                       className="mt-2"
                       required
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                     <div>
                       <Label htmlFor="phone">
                         Phone Number
@@ -189,7 +209,7 @@ export default function MultiStepRegister() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+234 801 234 5678"
+                        placeholder="+237 6XX XXX XXX"
                         className="mt-2"
                         required
                       />
@@ -206,58 +226,54 @@ export default function MultiStepRegister() {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="info@fasthaul.com"
+                        placeholder="info@company.com"
                         className="mt-2"
                         required
                       />
                     </div>
+
                   </div>
                 </div>
               </div>
             )}
 
-            {/* ================= STEP 2 ================= */}
+            {/* STEP 2 (UNCHANGED UI) */}
             {step === 2 && (
               <div>
                 <h2 className="text-2xl font-semibold text-center mb-8">
                   Company Documents
                 </h2>
 
-                <div className="border-2 border-dashed border-zinc-700 rounded-2xl p-10 text-center">
-                  <Upload className="w-12 h-12 mx-auto text-zinc-500 mb-4" />
+                <div className="border-2 border-dashed border-border rounded-2xl p-10 text-center">
 
-                  <p className="text-zinc-400 mb-4">
-                    Upload CAC Certificate, Tax ID, etc.
+                  <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+
+                  <p className="text-muted-foreground mb-5">
+                    Upload company registration,
+                    tax certificate, CAC, etc.
                   </p>
 
                   <input
                     type="file"
                     multiple
-                    onChange={handleFileChange}
-                    className="block w-full text-sm text-zinc-400
-                    file:mr-4
-                    file:py-3
-                    file:px-6
-                    file:rounded-xl
-                    file:border-0
-                    file:text-sm
-                    file:font-medium
-                    file:bg-orange-500
-                    file:text-black
+                    onChange={(e) => handleFileChange(e, "company")}
+                    className="block w-full text-sm text-muted-foreground
+                    file:mr-4 file:py-3 file:px-6 file:rounded-xl
+                    file:border-0 file:text-sm file:font-medium
+                    file:bg-orange-500 file:text-black
                     hover:file:bg-orange-600"
                   />
 
-                  {formData.documents.length > 0 && (
+                  {formData.companyDocuments.length > 0 && (
                     <p className="mt-4 text-emerald-500 text-sm">
-                      {formData.documents.length} file(s)
-                      selected
+                      {formData.companyDocuments.length} file(s) selected
                     </p>
                   )}
                 </div>
               </div>
             )}
 
-            {/* ================= STEP 3 ================= */}
+            {/* STEP 3 */}
             {step === 3 && (
               <div>
                 <h2 className="text-2xl font-semibold text-center mb-8">
@@ -265,66 +281,73 @@ export default function MultiStepRegister() {
                 </h2>
 
                 <div className="space-y-6">
-                  <div>
-                    <Label htmlFor="ceoName">
-                      Full Name
-                    </Label>
 
-                    <Input
-                      id="ceoName"
-                      name="ceoName"
-                      value={formData.ceoName}
-                      onChange={handleChange}
-                      placeholder="Mr. John Doe"
-                      className="mt-2"
-                      required
-                    />
-                  </div>
+                  <Input
+                    name="ceoName"
+                    value={formData.ceoName}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                  />
 
-                  <div>
-                    <Label htmlFor="ceoEmail">
-                      Email Address
-                    </Label>
+                  <Input
+                    name="ceoEmail"
+                    value={formData.ceoEmail}
+                    onChange={handleChange}
+                    placeholder="ceo@company.com"
+                  />
 
-                    <Input
-                      id="ceoEmail"
-                      name="ceoEmail"
-                      type="email"
-                      value={formData.ceoEmail}
-                      onChange={handleChange}
-                      placeholder="ceo@company.com"
-                      className="mt-2"
-                      required
-                    />
-                  </div>
+                  <Input
+                    name="ceoPhone"
+                    value={formData.ceoPhone}
+                    onChange={handleChange}
+                    placeholder="+237 6XX XXX XXX"
+                  />
 
-                  <div>
-                    <Label htmlFor="ceoPhone">
-                      Phone Number
-                    </Label>
-
-                    <Input
-                      id="ceoPhone"
-                      name="ceoPhone"
-                      value={formData.ceoPhone}
-                      onChange={handleChange}
-                      placeholder="+234 803 456 7890"
-                      className="mt-2"
-                      required
-                    />
-                  </div>
                 </div>
               </div>
             )}
 
-            {/* Navigation Buttons */}
+            {/* STEP 4 (UNCHANGED UI) */}
+            {step === 4 && (
+              <div>
+                <h2 className="text-2xl font-semibold text-center mb-8">
+                  CEO Documents
+                </h2>
+
+                <div className="border-2 border-dashed border-border rounded-2xl p-10 text-center">
+
+                  <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+
+                  <p className="text-muted-foreground mb-5">
+                    Upload national ID and selfie
+                    with ID card.
+                  </p>
+
+                  <input
+                    type="file"
+                    multiple
+                    onChange={(e) => handleFileChange(e, "ceo")}
+                    className="block w-full text-sm text-muted-foreground
+                    file:mr-4 file:py-3 file:px-6 file:rounded-xl
+                    file:border-0 file:text-sm file:font-medium
+                    file:bg-orange-500 file:text-black
+                    hover:file:bg-orange-600"
+                  />
+
+                  {formData.ceoDocuments.length > 0 && (
+                    <p className="mt-4 text-emerald-500 text-sm">
+                      {formData.ceoDocuments.length} file(s) selected
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* BUTTONS */}
             <div className="flex justify-between mt-10">
+
               {step > 1 ? (
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={prevStep}
-                >
+                <Button type="button" variant="outline" onClick={prevStep}>
                   <ArrowLeft className="mr-2 w-4 h-4" />
                   Back
                 </Button>
@@ -332,37 +355,31 @@ export default function MultiStepRegister() {
                 <div />
               )}
 
-              {step < 3 ? (
-                <Button
-                  type="button"
-                  onClick={nextStep}
-                  className="bg-orange-500 hover:bg-orange-600 text-black"
-                >
+              {step < 4 && (
+                <Button type="button" onClick={nextStep} className="bg-orange-500 text-black">
                   Next
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                >
+              )}
+
+              {step === 4 && (
+                <Button type="submit" className="bg-emerald-600 text-white">
                   Submit Application
                 </Button>
               )}
+
             </div>
+
           </form>
         </div>
 
-        {/* Footer */}
-        <p className="text-center mt-6 text-sm text-zinc-500">
+        <p className="text-center mt-6 text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link
-            href="/auth/login"
-            className="text-orange-500 hover:underline"
-          >
+          <Link href="/auth/login" className="text-orange-500 hover:underline">
             Sign in
           </Link>
         </p>
+
       </div>
     </div>
   );

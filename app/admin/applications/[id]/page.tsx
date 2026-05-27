@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Check, X, Globe, Mail, MapPin, Truck } from "lucide-react";
+import { Check, X, Globe, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 
 export default function ApplicationDetailPage() {
@@ -11,7 +11,6 @@ export default function ApplicationDetailPage() {
     "pending" | "approved" | "rejected"
   >("pending");
 
-  // mock data (later replace with DB)
   const app = {
     id,
     name: "SwiftHaul Logistics",
@@ -27,107 +26,112 @@ export default function ApplicationDetailPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-foreground">
 
       {/* HEADER */}
       <div>
         <h1 className="text-xl font-black">
           Application Details
         </h1>
-        <p className="text-zinc-500 mt-2 text-[12px]">
+
+        <p className="text-muted-foreground mt-2 text-sm">
           Review company before approval
         </p>
       </div>
 
       {/* MAIN CARD */}
-      <div className="bg-zinc-950 border border-zinc-800 rounded-md p-8 space-y-8">
+      <div className="bg-background border border-border rounded-2xl p-8 space-y-8">
 
         {/* COMPANY HEADER */}
         <div className="flex justify-between items-start">
+
           <div>
-            <h2 className="text-md font-bold">
+            <h2 className="text-lg font-bold">
               {app.name}
             </h2>
 
-            <p className="text-zinc-400 mt-2 flex items-center gap-2 text-[12px]">
-              <Mail size={16} /> {app.email}
+            <p className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+              <Mail size={14} /> {app.email}
             </p>
 
-            <p className="text-zinc-400 flex items-center gap-2 text-[12px]">
-              <Globe size={16} /> {app.country}
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Globe size={14} /> {app.country}
             </p>
 
-            <p className="text-zinc-400 flex items-center gap-2 text-[12px]">
-              <MapPin size={16} /> {app.address}
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin size={14} /> {app.address}
             </p>
           </div>
 
           {/* STATUS */}
           <span
-            className={`px-4 py-2 rounded-md font-semibold text-[12px] ${
-              status === "pending"
-                ? "bg-yellow-500/10 text-yellow-400"
-                : status === "approved"
-                ? "bg-green-500/10 text-green-400"
-                : "bg-red-500/10 text-red-400"
-            }`}
+            className={`px-3 py-1 rounded-md text-xs font-semibold
+              ${
+                status === "pending"
+                  ? "bg-yellow-500/10 text-yellow-500"
+                  : status === "approved"
+                  ? "bg-green-500/10 text-green-500"
+                  : "bg-red-500/10 text-red-500"
+              }`}
           >
             {status.toUpperCase()}
           </span>
         </div>
 
         {/* INFO GRID */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <InfoCard label="Fleet Size" value={app.fleetSize} />
           <InfoCard label="Drivers" value={app.drivers} />
           <InfoCard label="Vehicles" value={app.vehicles} />
         </div>
 
         {/* DESCRIPTION */}
-        <div className="bg-zinc-900 rounded-2xl p-6">
+        <div className="bg-muted/50 border border-border rounded-2xl p-6">
           <h3 className="font-semibold mb-2 text-sm">
             Company Description
           </h3>
-          <p className="text-zinc-400 text-[12px]">
+          <p className="text-muted-foreground text-sm">
             {app.description}
           </p>
         </div>
 
         {/* JOIN DATE */}
-        <p className="text-[12px] text-zinc-500">
+        <p className="text-xs text-muted-foreground">
           Applied on: {app.joinedAt}
         </p>
 
         {/* ACTION BUTTONS */}
         {status === "pending" && (
           <div className="flex gap-4 pt-4">
+
             <button
               onClick={() => setStatus("approved")}
-              className="flex items-center gap-2 bg-green-500 text-black px-4 py-2 text-[12px] rounded-md font-bold hover:bg-green-400 transition"
+              className="flex items-center gap-2 bg-green-500 text-black px-4 py-2 text-sm rounded-md font-bold hover:bg-green-400 transition"
             >
-              <Check size={18} />
+              <Check size={16} />
               Approve Company
             </button>
 
             <button
               onClick={() => setStatus("rejected")}
-              className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 text-[12px] rounded-md font-bold hover:bg-red-400 transition"
+              className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 text-sm rounded-md font-bold hover:bg-red-400 transition"
             >
-              <X size={18} />
+              <X size={16} />
               Reject Application
             </button>
+
           </div>
         )}
 
-        {/* AFTER ACTION STATE */}
+        {/* AFTER STATE */}
         {status !== "pending" && (
-          <div className="bg-zinc-900 p-5 rounded-2xl text-zinc-400">
+          <div className="bg-muted border border-border p-5 rounded-2xl text-muted-foreground">
             This application has been{" "}
             <span
               className={
                 status === "approved"
-                  ? "text-green-400"
-                  : "text-red-400"
+                  ? "text-green-500"
+                  : "text-red-500"
               }
             >
               {status}
@@ -140,9 +144,7 @@ export default function ApplicationDetailPage() {
   );
 }
 
-
-
-/* SMALL REUSABLE CARD */
+/* INFO CARD */
 function InfoCard({
   label,
   value,
@@ -151,9 +153,9 @@ function InfoCard({
   value: string | number;
 }) {
   return (
-    <div className="bg-zinc-900 p-5 rounded-md">
-      <p className="text-zinc-500 text-[12px]">{label}</p>
-      <h3 className="text-xl font-bold mt-1 text-md">{value}</h3>
+    <div className="bg-background border border-border p-5 rounded-2xl">
+      <p className="text-xs text-muted-foreground">{label}</p>
+      <h3 className="text-lg font-bold mt-1">{value}</h3>
     </div>
   );
 }

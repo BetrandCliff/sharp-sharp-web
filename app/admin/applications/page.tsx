@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const apps = [
   {
@@ -20,8 +21,11 @@ const apps = [
 ];
 
 export default function ApplicationsPage() {
+  const { theme } = useTheme();
+  const dark = theme === "dark";
+
   return (
-    <div>
+    <div className="text-foreground">
       <h1 className="text-xl font-black mb-10">
         Company Applications
       </h1>
@@ -31,27 +35,31 @@ export default function ApplicationsPage() {
           <Link
             key={app.id}
             href={`/admin/applications/${app.id}`}
-            className="block bg-zinc-950 border border-zinc-800 rounded-3xl p-6 hover:border-orange-500/40 transition"
+            className="
+              block rounded-3xl p-6 border transition
+              bg-background border-border
+              hover:border-orange-500/40
+            "
           >
             <div className="flex justify-between items-center">
               
-              {/* LEFT SIDE */}
+              {/* LEFT */}
               <div>
-                <h2 className="text-sm font-bold">
+                <h2 className="text-sm font-bold text-foreground">
                   {app.name}
                 </h2>
 
-                <p className="text-zinc-400 text-[12px]">
+                <p className="text-muted-foreground text-sm">
                   {app.email}
                 </p>
 
-                <p className="text-zinc-500 text-[12px]">
+                <p className="text-muted-foreground text-sm">
                   {app.country} • {app.fleetSize}
                 </p>
               </div>
 
-              {/* RIGHT INDICATOR */}
-              <div className="text-zinc-500 text-sm">
+              {/* RIGHT */}
+              <div className="text-muted-foreground text-sm">
                 Click to review →
               </div>
 

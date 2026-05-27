@@ -61,28 +61,28 @@ const trips = [
 
 export default function CompanyDetailsPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-foreground">
 
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl md:text-xl font-bold tracking-tight">
+          <h1 className="text-xl font-bold">
             Company Details
           </h1>
 
-          <p className="text-zinc-500 mt-2 text-[12px]">
+          <p className="text-foreground/60 mt-2 text-[12px]">
             Manage company operations, drivers, vehicles, and trips
           </p>
         </div>
 
         <div className="flex gap-3">
 
-          <button className="bg-zinc-900 hover:bg-zinc-800 transition px-4 py-2 rounded-md flex items-center gap-2 text-[12px]">
+          <button className="bg-card border border-border hover:bg-card/80 transition px-4 py-2 rounded-md flex items-center gap-2 text-[12px]">
             <Edit size={18} />
             Edit Company
           </button>
 
-          <button className="bg-red-500 hover:bg-red-400 transition text-white px-4 py-2 rounded-md flex items-center gap-2 text-[12px]">
+          <button className="bg-red-500/10 hover:bg-red-500/20 transition text-red-400 px-4 py-2 rounded-md flex items-center gap-2 text-[12px]">
             <ShieldAlert size={18} />
             Suspend
           </button>
@@ -91,7 +91,7 @@ export default function CompanyDetailsPage() {
       </div>
 
       {/* COMPANY PROFILE */}
-      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+      <div className="bg-card border border-border rounded-3xl p-6">
 
         <div className="flex items-start justify-between">
 
@@ -106,7 +106,7 @@ export default function CompanyDetailsPage() {
                 SwiftHaul Logistics
               </h2>
 
-              <div className="space-y-2 mt-4 text-zinc-400">
+              <div className="space-y-2 mt-4 text-foreground/60">
 
                 <div className="flex items-center gap-2 text-[12px]">
                   <Mail size={12} />
@@ -160,17 +160,14 @@ export default function CompanyDetailsPage() {
       </div>
 
       {/* DRIVERS */}
-      <SectionHeader
-        title="Drivers"
-        button="Add Driver"
-      />
+      <SectionHeader title="Drivers" button="Add Driver" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {drivers.map((driver) => (
           <div
             key={driver.id}
-            className="bg-zinc-950 border border-zinc-800 rounded-md p-5"
+            className="bg-card border border-border rounded-md p-5"
           >
 
             <div className="flex items-center justify-between">
@@ -180,12 +177,12 @@ export default function CompanyDetailsPage() {
                   {driver.name}
                 </h3>
 
-                <p className="text-zinc-500 text-sm mt-1">
+                <p className="text-foreground/60 text-sm mt-1">
                   {driver.phone}
                 </p>
               </div>
 
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm">
+              <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm">
                 {driver.status}
               </span>
 
@@ -193,12 +190,12 @@ export default function CompanyDetailsPage() {
 
             <div className="flex gap-3 mt-5">
 
-              <button className="flex-1 text-[12px] bg-zinc-900 hover:bg-zinc-800 transition rounded-md py-3 flex items-center justify-center gap-2">
+              <button className="flex-1 bg-background border border-border hover:bg-card transition rounded-md py-3 flex items-center justify-center gap-2 text-[12px]">
                 <Edit size={16} />
                 Edit
               </button>
 
-              <button className="flex-1 text-[12px] bg-red-500/10 hover:bg-red-500/20 text-red-400 transition rounded-md py-3 flex items-center justify-center gap-2">
+              <button className="flex-1 bg-red-500/10 hover:bg-red-500/20 text-red-400 transition rounded-md py-3 flex items-center justify-center gap-2 text-[12px]">
                 <Trash2 size={16} />
                 Remove
               </button>
@@ -211,17 +208,14 @@ export default function CompanyDetailsPage() {
       </div>
 
       {/* VEHICLES */}
-      <SectionHeader
-        title="Vehicles"
-        button="Add Vehicle"
-      />
+      <SectionHeader title="Vehicles" button="Add Vehicle" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {vehicles.map((vehicle) => (
           <div
             key={vehicle.id}
-            className="bg-zinc-950 border border-zinc-800 rounded-md p-5"
+            className="bg-card border border-border rounded-md p-5"
           >
 
             <div className="flex items-center justify-between">
@@ -231,7 +225,7 @@ export default function CompanyDetailsPage() {
                   {vehicle.model}
                 </h3>
 
-                <p className="text-zinc-500 text-[12px] mt-1">
+                <p className="text-foreground/60 text-[12px] mt-1">
                   Plate No: {vehicle.plate}
                 </p>
               </div>
@@ -244,7 +238,7 @@ export default function CompanyDetailsPage() {
 
             <div className="flex gap-3 mt-5">
 
-              <button className="flex-1 bg-zinc-900 hover:bg-zinc-800 transition rounded-md py-3 flex items-center justify-center gap-2 text-[12px]">
+              <button className="flex-1 bg-background border border-border hover:bg-card transition rounded-md py-3 flex items-center justify-center gap-2 text-[12px]">
                 <Edit size={16} />
                 Edit
               </button>
@@ -262,17 +256,14 @@ export default function CompanyDetailsPage() {
       </div>
 
       {/* TRIPS */}
-      <SectionHeader
-        title="Trips"
-        button="Create Trip"
-      />
+      <SectionHeader title="Trips" button="Create Trip" />
 
       <div className="space-y-4">
 
         {trips.map((trip) => (
           <div
             key={trip.id}
-            className="bg-zinc-950 border border-zinc-800 rounded-md p-5 flex items-center justify-between"
+            className="bg-card border border-border rounded-md p-5 flex items-center justify-between"
           >
 
             <div>
@@ -280,7 +271,7 @@ export default function CompanyDetailsPage() {
                 {trip.route}
               </h3>
 
-              <p className="text-zinc-500 text-sm mt-1">
+              <p className="text-foreground/60 text-sm mt-1">
                 Revenue: {trip.revenue}
               </p>
             </div>
@@ -291,7 +282,7 @@ export default function CompanyDetailsPage() {
                 {trip.status}
               </span>
 
-              <button className="text-zinc-400 hover:text-white transition">
+              <button className="text-foreground/60 hover:text-foreground transition">
                 <Edit size={18} />
               </button>
 
@@ -341,10 +332,10 @@ function StatCard({
   value: string;
 }) {
   return (
-    <div className="bg-zinc-900 rounded-md p-5">
+    <div className="bg-card border border-border rounded-md p-5">
 
       <div className="flex items-center justify-between">
-        <p className="text-zinc-500 text-sm">
+        <p className="text-foreground/60 text-sm">
           {title}
         </p>
 

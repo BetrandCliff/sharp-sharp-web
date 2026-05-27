@@ -12,7 +12,7 @@ import {
 
 export default function AnalyticsPage() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 text-foreground">
 
       {/* HEADER */}
       <div className="flex items-center justify-between">
@@ -21,7 +21,7 @@ export default function AnalyticsPage() {
             Analytics
           </h1>
 
-          <p className="text-zinc-500 mt-2 text-sm">
+          <p className="text-muted-foreground mt-2 text-sm">
             Platform performance and logistics insights
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
         {/* REVENUE CHART */}
-        <div className="xl:col-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+        <div className="xl:col-span-2 bg-card border border-border rounded-3xl p-8">
 
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -76,7 +76,7 @@ export default function AnalyticsPage() {
                 Revenue Overview
               </h2>
 
-              <p className="text-zinc-500 text-[12px] mt-1">
+              <p className="text-muted-foreground text-[12px] mt-1">
                 Last 6 months performance
               </p>
             </div>
@@ -88,18 +88,13 @@ export default function AnalyticsPage() {
           <div className="h-80 flex items-end gap-4">
 
             {[40, 65, 52, 80, 74, 95].map((height, i) => (
-              <div
-                key={i}
-                className="flex-1 flex flex-col items-center"
-              >
+              <div key={i} className="flex-1 flex flex-col items-center">
                 <div
                   className="w-full bg-orange-500 rounded-t-2xl hover:bg-orange-400 transition-all"
-                  style={{
-                    height: `${height}%`,
-                  }}
+                  style={{ height: `${height}%` }}
                 />
 
-                <span className="text-zinc-500 text-sm mt-3">
+                <span className="text-muted-foreground text-sm mt-3">
                   {["Jan", "Feb", "Mar", "Apr", "May", "Jun"][i]}
                 </span>
               </div>
@@ -112,7 +107,7 @@ export default function AnalyticsPage() {
         <div className="space-y-6">
 
           {/* DELIVERY SUCCESS */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+          <div className="bg-card border border-border rounded-3xl p-8">
             <div className="flex items-center justify-between">
               <h2 className="text-md font-bold">
                 Delivery Success
@@ -133,56 +128,36 @@ export default function AnalyticsPage() {
           </div>
 
           {/* ACTIVE REGIONS */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+          <div className="bg-card border border-border rounded-3xl p-8">
             <h2 className="text-md font-bold mb-6">
               Active Regions
             </h2>
 
             <div className="space-y-4">
-
-              <Region
-                name="Nigeria"
-                trips="4,240 trips"
-              />
-
-              <Region
-                name="Ghana"
-                trips="2,130 trips"
-              />
-
-              <Region
-                name="Cameroon"
-                trips="1,402 trips"
-              />
-
-              <Region
-                name="Kenya"
-                trips="932 trips"
-              />
-
+              <Region name="Nigeria" trips="4,240 trips" />
+              <Region name="Ghana" trips="2,130 trips" />
+              <Region name="Cameroon" trips="1,402 trips" />
+              <Region name="Kenya" trips="932 trips" />
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* RECENT PERFORMANCE */}
-      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+      {/* TOP COMPANIES */}
+      <div className="bg-card border border-border rounded-3xl p-8">
 
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-xl font-bold">
-              Top Performing Companies
-            </h2>
+        <div className="mb-8">
+          <h2 className="text-xl font-bold">
+            Top Performing Companies
+          </h2>
 
-            <p className="text-zinc-500 text-sm mt-1">
-              Based on completed deliveries
-            </p>
-          </div>
+          <p className="text-muted-foreground text-sm mt-1">
+            Based on completed deliveries
+          </p>
         </div>
 
         <div className="space-y-4">
-
           <CompanyRow
             name="SwiftHaul Logistics"
             deliveries="4,280"
@@ -200,10 +175,9 @@ export default function AnalyticsPage() {
             deliveries="2,710"
             revenue="$58K"
           />
-
         </div>
-      </div>
 
+      </div>
     </div>
   );
 }
@@ -221,11 +195,11 @@ function AnalyticsCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="bg-zinc-950 border border-zinc-800 rounded-md p-6 hover:border-orange-500/40 transition">
+    <div className="bg-card border border-border rounded-md p-6 hover:border-orange-500/40 transition">
 
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-zinc-500 text-sm">
+          <p className="text-muted-foreground text-sm">
             {title}
           </p>
 
@@ -256,15 +230,10 @@ function Region({
   trips: string;
 }) {
   return (
-    <div className="flex items-center justify-between bg-zinc-900 rounded-2xl p-4">
+    <div className="flex items-center justify-between bg-muted rounded-2xl p-4">
       <div>
-        <h3 className="font-semibold text-sm">
-          {name}
-        </h3>
-
-        <p className="text-zinc-500 text-[12px]">
-          {trips}
-        </p>
+        <h3 className="font-semibold text-sm">{name}</h3>
+        <p className="text-muted-foreground text-[12px]">{trips}</p>
       </div>
 
       <div className="w-3 h-3 rounded-full bg-emerald-500" />
@@ -283,14 +252,11 @@ function CompanyRow({
   revenue: string;
 }) {
   return (
-    <div className="flex items-center justify-between bg-zinc-900 rounded-2xl p-5 hover:bg-zinc-800 transition">
+    <div className="flex items-center justify-between bg-muted rounded-2xl p-5 hover:bg-accent transition">
 
       <div>
-        <h3 className="font-semibold text-sm">
-          {name}
-        </h3>
-
-        <p className="text-zinc-500 text-[12px]">
+        <h3 className="font-semibold text-sm">{name}</h3>
+        <p className="text-muted-foreground text-[12px]">
           {deliveries} deliveries
         </p>
       </div>
@@ -300,7 +266,7 @@ function CompanyRow({
           {revenue}
         </h3>
 
-        <p className="text-zinc-500 text-[12px]">
+        <p className="text-muted-foreground text-[12px]">
           Monthly Revenue
         </p>
       </div>

@@ -13,16 +13,16 @@ import {
 
 export default function AccountPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-foreground bg-background">
 
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl md:text-xl font-bold tracking-tight">
+          <h1 className="text-xl font-bold tracking-tight">
             Account
           </h1>
 
-          <p className="text-zinc-500 mt-2 text-[12px]">
+          <p className="text-muted-foreground mt-2 text-[12px]">
             Manage your profile and account settings
           </p>
         </div>
@@ -34,17 +34,17 @@ export default function AccountPage() {
       </div>
 
       {/* PROFILE SECTION */}
-      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+      <div className="bg-card border border-border rounded-3xl p-6">
 
         <div className="flex flex-col md:flex-row md:items-center gap-6">
 
           {/* AVATAR */}
           <div className="relative">
-            <div className="w-23 h-23 rounded-3xl bg-orange-500 flex items-center justify-center text-4xl font-bold text-black">
+            <div className="w-24 h-24 rounded-3xl bg-orange-500 flex items-center justify-center text-4xl font-bold text-black">
               A
             </div>
 
-            <button className="absolute -bottom-2 -right-2 w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-zinc-800 transition">
+            <button className="absolute -bottom-2 -right-2 w-10 h-10 rounded-xl bg-background border border-border flex items-center justify-center hover:bg-muted transition">
               <Camera size={18} />
             </button>
           </div>
@@ -55,17 +55,17 @@ export default function AccountPage() {
               Admin User
             </h2>
 
-            <p className="text-zinc-500 mt-1 text-[12px]">
+            <p className="text-muted-foreground mt-1 text-[12px]">
               Super Administrator
             </p>
 
             <div className="flex flex-wrap gap-3 mt-4">
 
-              <div className="px-4 py-2 rounded-md bg-emerald-500/10 text-emerald-400 text-[12px]">
+              <div className="px-4 py-2 rounded-md bg-emerald-500/10 text-emerald-500 text-[12px]">
                 Active Account
               </div>
 
-              <div className="px-4 py-2 rounded-md bg-orange-500/10 text-orange-400 text-[12px]">
+              <div className="px-4 py-2 rounded-md bg-orange-500/10 text-orange-500 text-[12px]">
                 Full Access
               </div>
 
@@ -79,7 +79,7 @@ export default function AccountPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
 
         {/* PERSONAL INFO */}
-        <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+        <div className="bg-card border border-border rounded-3xl p-6">
 
           <h2 className="text-md font-semibold mb-6">
             Personal Information
@@ -87,10 +87,7 @@ export default function AccountPage() {
 
           <div className="space-y-5">
 
-            <InputField
-              label="Full Name"
-              value="Admin User"
-            />
+            <InputField label="Full Name" value="Admin User" />
 
             <InputField
               label="Email Address"
@@ -118,7 +115,7 @@ export default function AccountPage() {
         <div className="space-y-8">
 
           {/* SECURITY SETTINGS */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+          <div className="bg-card border border-border rounded-3xl p-6">
 
             <h2 className="text-md font-semibold mb-6">
               Security
@@ -149,7 +146,7 @@ export default function AccountPage() {
           </div>
 
           {/* ACTIVITY */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+          <div className="bg-card border border-border rounded-3xl p-6">
 
             <h2 className="text-md font-semibold mb-6">
               Recent Activity
@@ -179,7 +176,6 @@ export default function AccountPage() {
         </div>
 
       </div>
-
     </div>
   );
 }
@@ -196,14 +192,14 @@ function InputField({
 }) {
   return (
     <div>
-      <label className="text-[12px] text-zinc-500">
+      <label className="text-xs text-muted-foreground">
         {label}
       </label>
 
-      <div className="mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl px-4 py-4 flex items-center gap-3">
+      <div className="mt-2 bg-background border border-border rounded-2xl px-4 py-4 flex items-center gap-3">
 
         {icon && (
-          <div className="text-zinc-500">
+          <div className="text-muted-foreground">
             {icon}
           </div>
         )}
@@ -211,9 +207,8 @@ function InputField({
         <input
           type="text"
           defaultValue={value}
-          className="bg-transparent outline-none w-full text-[12px]"
+          className="bg-transparent outline-none w-full text-sm text-foreground"
         />
-
       </div>
     </div>
   );
@@ -230,18 +225,18 @@ function ActionCard({
   description: string;
 }) {
   return (
-    <button className="w-full bg-zinc-900 hover:bg-zinc-800 transition rounded-2xl p-5 flex items-center gap-4 text-left">
+    <button className="w-full bg-background border border-border hover:bg-muted transition rounded-2xl p-5 flex items-center gap-4 text-left">
 
       <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center">
         {icon}
       </div>
 
       <div>
-        <h3 className="font-semibold text-[12px]">
+        <h3 className="font-semibold text-sm">
           {title}
         </h3>
 
-        <p className="text-[12px] text-zinc-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           {description}
         </p>
       </div>
@@ -259,16 +254,16 @@ function ActivityItem({
   time: string;
 }) {
   return (
-    <div className="flex items-start gap-4 bg-zinc-900 rounded-2xl p-4">
+    <div className="flex items-start gap-4 bg-background border border-border rounded-2xl p-4">
 
       <div className="w-3 h-3 rounded-full bg-orange-500 mt-2" />
 
       <div>
-        <h3 className="font-medium text-[12px]">
+        <h3 className="font-medium text-sm">
           {action}
         </h3>
 
-        <p className="text-[12px] text-zinc-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           {time}
         </p>
       </div>

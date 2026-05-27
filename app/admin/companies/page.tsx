@@ -34,19 +34,19 @@ const companies = [
 
 export default function CompaniesPage() {
   return (
-    <div>
+    <div className="text-foreground">
       {/* HEADER */}
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-xl font-black">
             Companies
           </h1>
-          <p className="text-zinc-500 mt-2 text-[12px]">
+          <p className="text-foreground/60 mt-2 text-[12px]">
             Manage all approved logistics companies
           </p>
         </div>
 
-        <button className="bg-orange-500 text-black px-4 py-2 text-[12px] rounded-sm font-bold">
+        <button className="bg-orange-500 text-black px-4 py-2 text-[12px] rounded-md font-bold hover:bg-orange-400 transition">
           + Add Company
         </button>
       </div>
@@ -58,7 +58,7 @@ export default function CompaniesPage() {
           <Link
             key={c.id}
             href={`/admin/companies/${c.id}`}
-            className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6 hover:border-orange-500/40 transition"
+            className="bg-background border border-border rounded-3xl p-6 hover:border-orange-500/40 transition"
           >
 
             {/* TOP */}
@@ -73,17 +73,17 @@ export default function CompaniesPage() {
                     {c.name}
                   </h2>
 
-                  <p className="text-zinc-500 text-[12px]">
+                  <p className="text-foreground/60 text-[12px]">
                     {c.email}
                   </p>
                 </div>
               </div>
 
-              <MoreVertical className="text-zinc-600" />
+              <MoreVertical className="text-foreground/40" />
             </div>
 
             {/* COUNTRY */}
-            <div className="flex items-center gap-2 mt-4 text-zinc-400 text-[12px]">
+            <div className="flex items-center gap-2 mt-4 text-foreground/60 text-[12px]">
               <Globe size={16} />
               {c.country}
             </div>
@@ -123,13 +123,13 @@ function Stat({
   value: number;
 }) {
   return (
-    <div className="bg-zinc-900 rounded-md p-3 text-center">
+    <div className="bg-card border border-border rounded-md p-3 text-center">
       <div className="flex justify-center text-orange-500">
         {icon}
       </div>
 
-      <p className="text-xs text-zinc-500 mt-1">{label}</p>
-      <p className="font-bold">{value}</p>
+      <p className="text-xs text-foreground/60 mt-1">{label}</p>
+      <p className="font-bold text-foreground">{value}</p>
     </div>
   );
 }

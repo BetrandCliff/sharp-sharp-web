@@ -23,39 +23,28 @@ export default function Sidebar({ role }: { role: Role }) {
 
   const mainLinks =
     role === "admin"
-      ?[
-  {
-    label: "Dashboard",
-    href: "/admin/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Applications",
-    href: "/admin/applications",
-    icon: ClipboardList,
-  },
-  {
-    label: "Companies",
-    href: "/admin/companies",
-    icon: Building2,
-  },
-  // {
-  //   label: "Drivers",
-  //   href: "/admin/drivers",
-  //   icon: Users,
-  // },
-  // {
-  //   label: "Vehicles",
-  //   href: "/admin/vehicles",
-  //   icon: Car,
-  // },
-  {
-    label: "Analytics",
-    href: "/admin/analytics",
-    icon: BarChart3,
-  },
- 
-]
+      ? [
+          {
+            label: "Dashboard",
+            href: "/admin/dashboard",
+            icon: LayoutDashboard,
+          },
+          {
+            label: "Applications",
+            href: "/admin/applications",
+            icon: ClipboardList,
+          },
+          {
+            label: "Companies",
+            href: "/admin/companies",
+            icon: Building2,
+          },
+          {
+            label: "Analytics",
+            href: "/admin/analytics",
+            icon: BarChart3,
+          },
+        ]
       : [
           {
             label: "Dashboard",
@@ -93,35 +82,31 @@ export default function Sidebar({ role }: { role: Role }) {
   ];
 
   const handleLogout = () => {
-    // clear auth later
     window.location.href = "/auth/login";
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-52 bg-zinc-950 border-r border-zinc-800 flex flex-col overflow-hidden">
+    <aside className="fixed left-0 top-0 h-screen w-56 bg-background border-r border-border flex flex-col transition-colors">
 
-      {/* Logo */}
-      <div className="h-24  flex items-center px-8 border-b border-zinc-800">
-        <div className="w-8 h-8 rounded-md bg-orange-500 flex items-center justify-center mr-4 shadow-lg shadow-orange-500/30">
-          <Truck className="text-black w-6 h-6" />
+      {/* LOGO */}
+      <div className="h-20 flex items-center px-5 border-b border-border">
+        <div className="w-8 h-8 rounded-md bg-orange-500 flex items-center justify-center mr-3">
+          <Truck className="w-5 h-5 text-black" />
         </div>
 
         <div>
-          <h1 className="text-[12px] font-black tracking-tight text-white">
-           {role === "admin"
-              ? "Sharp-Sharp"
-              : "Royal Suppler"}
+          <h1 className="text-xs font-bold text-foreground">
+            {role === "admin" ? "Sharp-Sharp" : "Royal Supplier"}
           </h1>
-          <p className="text-[9px] text-zinc-500 ">
-            {role === "admin"
-              ? "Admin Platform"
-              : "Company Platform"}
+          <p className="text-[10px] text-foreground opacity-70">
+            {role === "admin" ? "Admin Platform" : "Company Platform"}
           </p>
         </div>
       </div>
 
-      {/* MAIN NAV */}
-      <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto no-scrollbar">
+      {/* NAV */}
+      <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
+
         {mainLinks.map((link) => {
           const isActive = pathname === link.href;
 
@@ -129,45 +114,39 @@ export default function Sidebar({ role }: { role: Role }) {
             <Link
               key={link.label}
               href={link.href}
-              className={`group flex text-[12px] items-center justify-between px-5 py-2 rounded-sm transition-all duration-300
-              
+              className={`flex items-center justify-between px-3 py-2 rounded-md text-xs transition-colors
               ${
                 isActive
-                  ? "bg-orange-500 text-black shadow-lg shadow-orange-500/20"
-                  : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                  ? "bg-orange-500 text-black"
+                  : "text-foreground hover:bg-card"
               }`}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <link.icon
                   size={14}
-                  className={`${
-                    isActive
-                      ? "text-black"
-                      : "text-zinc-500 group-hover:text-orange-500"
-                  }`}
+                  className={
+                    isActive ? "text-black" : "text-muted-foreground"
+                  }
                 />
 
-                <span className="font-medium text-[12px]">
-                  {link.label}
-                </span>
+                <span>{link.label}</span>
               </div>
 
               <ChevronRight
                 size={14}
-                className={`transition-transform duration-300 ${
+                className={
                   isActive
-                    ? "translate-x-1"
-                    : "text-zinc-600 group-hover:text-white"
-                }`}
+                    ? "text-black"
+                    : "text-muted-foreground"
+                }
               />
             </Link>
           );
         })}
 
         {/* Divider */}
-        <div className="mt-24 border-t border-zinc-800" />
+        <div className="my-4 border-t border-border" />
 
-        {/* SETTINGS + ACCOUNT */}
         {bottomLinks.map((link) => {
           const isActive = pathname === link.href;
 
@@ -175,37 +154,25 @@ export default function Sidebar({ role }: { role: Role }) {
             <Link
               key={link.label}
               href={link.href}
-              className={`group flex items-center text-[12px] justify-between px-5 py-2 rounded-sm transition-all duration-300
-              
+              className={`flex items-center justify-between px-3 py-2 rounded-md text-xs transition-colors
               ${
                 isActive
-                  ? "bg-orange-500 text-black shadow-lg shadow-orange-500/20"
-                  : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                  ? "bg-orange-500 text-black"
+                  : "text-foreground hover:bg-card"
               }`}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <link.icon
                   size={14}
-                  className={`${
-                    isActive
-                      ? "text-black"
-                      : "text-zinc-500 group-hover:text-orange-500"
-                  }`}
+                  className={
+                    isActive ? "text-black" : "text-muted-foreground"
+                  }
                 />
 
-                <span className="font-medium text-[12px]">
-                  {link.label}
-                </span>
+                <span>{link.label}</span>
               </div>
 
-              <ChevronRight
-                size={14}
-                className={`transition-transform duration-300 ${
-                  isActive
-                    ? "translate-x-1"
-                    : "text-zinc-600 group-hover:text-white"
-                }`}
-              />
+              <ChevronRight size={14} />
             </Link>
           );
         })}
@@ -213,11 +180,11 @@ export default function Sidebar({ role }: { role: Role }) {
         {/* LOGOUT */}
         <button
           onClick={handleLogout}
-          className="w-full group flex items-center justify-between px-5 py-4 rounded-2xl text-red-400 hover:bg-red-500/10 transition-all duration-300"
+          className="w-full flex items-center justify-between px-3 py-3 rounded-md text-xs text-red-500 hover:bg-red-500/10 transition-colors"
         >
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <LogOut size={14} />
-            <span className="font-medium text-[12px]">Logout</span>
+            <span>Logout</span>
           </div>
 
           <ChevronRight size={14} />
@@ -225,25 +192,25 @@ export default function Sidebar({ role }: { role: Role }) {
       </nav>
 
       {/* PROFILE */}
-      <div className="p-5 border-t border-zinc-800">
-        <div className="bg-zinc-900    rounded-md p-4 flex items-center gap-2">
-          <div className="w-10 h-10 rounded-md bg-orange-500 flex items-center justify-center text-black font-bold text-lg">
+      <div className="p-4 border-t border-border">
+        <div className="bg-card border border-border rounded-md p-3 flex items-center gap-3">
+
+          <div className="w-9 h-9 rounded-md bg-orange-500 flex items-center justify-center text-black font-bold">
             A
           </div>
 
           <div>
-            <h3 className="font-semibold text-white text-[10px]">
-              {role === "admin"
-                ? "Admin User"
-                : "Company User"}
+            <h3 className="text-xs font-semibold text-foreground">
+              {role === "admin" ? "Admin User" : "Company User"}
             </h3>
 
-            <p className="text-[8px] text-zinc-500">
+            <p className="text-[10px] text-foreground opacity-70">
               {role === "admin"
                 ? "Super Administrator"
                 : "Company Manager"}
             </p>
           </div>
+
         </div>
       </div>
 
