@@ -2,6 +2,7 @@
 
 import Sidebar from "@/app/components/sidebar";
 import { Truck, Clock, MapPin, Plus } from "lucide-react";
+import Link from "next/link";
 
 const trips = [
   {
@@ -43,10 +44,13 @@ export default function TripsPage() {
             </p>
           </div>
 
+          
+        <Link href="/company/trips/add">
           <button className="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-xl text-[12px] flex items-center gap-3 font-semibold text-sm transition shadow-lg shadow-orange-500/20">
             <Plus size={14} />
             Create Trip
           </button>
+        </Link>
 
         </div>
 

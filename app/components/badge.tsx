@@ -36,7 +36,7 @@ export default function BetaBadge() {
           className="inline-flex items-center justify-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-full px-5 py-2 mx-auto transition-colors duration-300"
         >
           <span className="text-orange-500 dark:text-orange-400 text-sm font-medium">
-            Powered By CRITH
+            Powered By Crith
           </span>
         </motion.div>
       )}

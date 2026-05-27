@@ -1,20 +1,24 @@
 import Sidebar from "@/app/components/sidebar";
+import Link from "next/link";
 import { Car, Plus, Fuel, MapPin } from "lucide-react";
 
 const vehicles = [
   {
+    id: 1,
     name: "Toyota Hiace",
     plate: "LAG-221-AA",
     fuel: "75%",
     location: "Lagos",
   },
   {
+    id: 2,
     name: "Ford Transit",
     plate: "ABJ-334-KL",
     fuel: "60%",
     location: "Abuja",
   },
   {
+    id: 3,
     name: "Mercedes Sprinter",
     plate: "PH-552-DD",
     fuel: "90%",
@@ -25,8 +29,6 @@ const vehicles = [
 export default function VehiclesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex">
-
-  
 
       {/* MAIN */}
       <main className="flex-1 p-6 md:p-10">
@@ -44,19 +46,22 @@ export default function VehiclesPage() {
             </p>
           </div>
 
-          <button className="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-xl  text-[12px] flex items-center gap-3 font-semibold transition-all shadow-lg shadow-orange-500/20">
-            <Plus size={18} />
-            Add Vehicle
-          </button>
+          {/* ADD VEHICLE */}
+          <Link href="/company/vehicles/add">
+            <button className="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-xl text-[12px] flex items-center gap-3 font-semibold transition-all shadow-lg shadow-orange-500/20">
+              <Plus size={18} />
+              Add Vehicle
+            </button>
+          </Link>
 
         </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-          {vehicles.map((vehicle, index) => (
+          {vehicles.map((vehicle) => (
             <div
-              key={index}
+              key={vehicle.id}
               className="bg-background border border-border rounded-xl p-6 hover:border-orange-500/40 hover:shadow-lg hover:shadow-orange-500/5 transition-all duration-300"
             >
 
@@ -79,12 +84,12 @@ export default function VehiclesPage() {
 
                 <div className="flex items-center gap-3 text-[12px]">
                   <Fuel size={14} />
-                  <span className="text-[12px]">Fuel: {vehicle.fuel}</span>
+                  <span>Fuel: {vehicle.fuel}</span>
                 </div>
 
                 <div className="flex items-center gap-3 text-[12px]">
                   <MapPin size={14} />
-                  <span className="text-[12px]">{vehicle.location}</span>
+                  <span>{vehicle.location}</span>
                 </div>
 
               </div>
@@ -114,13 +119,21 @@ export default function VehiclesPage() {
               {/* ACTIONS */}
               <div className="flex gap-3 mt-8">
 
-                <button className="flex-1 bg-orange-500 hover:bg-orange-600 text-black py-3 rounded-xl text-[12px] font-semibold transition">
+                {/* DETAIL PAGE */}
+                <Link
+                  href={`/company/vehicles/${vehicle.id}`}
+                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-black py-3 rounded-xl text-[12px] font-semibold transition text-center"
+                >
                   View Details
-                </button>
+                </Link>
 
-                <button className="flex-1 bg-muted hover:bg-muted/80 border border-border py-3 rounded-xl text-[12px] font-semibold transition">
+                {/* TRACK PAGE */}
+                <Link
+                  href={`/company/vehicles/track?id=${vehicle.id}`}
+                  className="flex-1 bg-muted hover:bg-muted/80 border border-border py-3 rounded-xl text-[12px] font-semibold transition text-center"
+                >
                   Track
-                </button>
+                </Link>
 
               </div>
 

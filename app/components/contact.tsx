@@ -160,7 +160,7 @@ export default function ContactPage() {
         </section>
       </main>
 
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-2 bg-white text-zinc-900 dark:bg-black">
         <BetaBadge />
       </div>
     </>
