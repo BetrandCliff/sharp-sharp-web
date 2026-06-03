@@ -97,7 +97,7 @@ export default function MultiStepRegister() {
     if (step < 4) return;
 
     console.log("Submitted Data:", formData);
-    router.push("/admin/dashboard");
+    router.push("/company/dashboard");
   };
 
   return (

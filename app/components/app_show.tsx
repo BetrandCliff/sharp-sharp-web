@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AppShowcase() {
   return (
-    <section className="py-24 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 relative overflow-hidden transition-colors duration-300">
+    <section className="py-24 bg-background text-foreground border-t border-border relative overflow-hidden transition-colors duration-300">
 
       {/* glow background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(249,115,22,0.10),transparent_60%)]" />
@@ -11,25 +11,27 @@ export default function AppShowcase() {
 
         {/* TEXT SIDE */}
         <div>
-          <div className="inline-flex items-center px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-[11px] text-zinc-500 dark:text-zinc-400 mb-5">
+
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-border bg-card text-[11px] text-muted-foreground mb-5">
             Mobile Experience
           </div>
 
-          <h2 className="text-xl font-bold mb-5 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5">
             Manage deliveries directly from your phone
           </h2>
 
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-6 mb-6">
+          <p className="text-sm md:text-base text-muted-foreground leading-6 mb-6">
             Drivers and customers can track, book, and manage logistics in real-time.
             Everything is optimized for speed, simplicity, and reliability.
           </p>
 
-          <ul className="text-sm text-zinc-500 dark:text-zinc-400 space-y-2">
+          <ul className="text-sm text-muted-foreground space-y-2">
             <li>✔ Real-time tracking</li>
             <li>✔ Instant booking system</li>
             <li>✔ Driver notifications</li>
             <li>✔ Seamless delivery updates</li>
           </ul>
+
         </div>
 
         {/* IMAGE SIDE */}
@@ -38,7 +40,8 @@ export default function AppShowcase() {
           {/* glow */}
           <div className="absolute -inset-6 bg-orange-500/10 blur-3xl rounded-full" />
 
-          <div className="relative border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+          <div className="relative border border-border rounded-2xl overflow-hidden shadow-xl bg-card">
+
             <Image
               src="/images/hero/sharp-sharp.png"
               alt="User using Sharp-Sharp app"
@@ -46,6 +49,7 @@ export default function AppShowcase() {
               height={900}
               className="w-full h-[520px] object-cover"
             />
+
           </div>
 
         </div>

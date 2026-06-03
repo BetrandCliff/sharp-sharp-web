@@ -1,7 +1,14 @@
-// components/Features.tsx
 "use client";
+
 import { motion } from "framer-motion";
-import { Users, Truck, Package, BarChart3, Shield, Clock } from "lucide-react";
+import {
+  Users,
+  Truck,
+  Package,
+  BarChart3,
+  Shield,
+  Clock,
+} from "lucide-react";
 
 const features = [
   {
@@ -40,31 +47,41 @@ export default function Features() {
   return (
     <section
       id="services"
-      className="py-24 bg-white dark:bg-zinc-950 border-t border-slate-200 dark:border-zinc-800 text-slate-900 dark:text-white"
+      className="py-24 bg-background text-foreground border-t border-border transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-6">
+
+        {/* HEADER */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-[11px] text-slate-500 dark:text-zinc-400 mb-5">
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-card text-[11px] text-muted-foreground mb-5">
             Our Services
           </div>
 
-          <h2 className="text-xl md:text-xl font-bold tracking-tight mb-4">
-            Everything you need to run<br />a modern logistics business
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+            Everything you need to run
+            <br />
+            a modern logistics business
           </h2>
 
-          <p className="text-slate-500 dark:text-zinc-400 text-md max-w-2xl mx-auto">
-            Built specifically for logistics companies who want efficiency and control.
+          <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
+            Built specifically for logistics companies who want efficiency,
+            visibility, and complete operational control.
           </p>
+
         </div>
 
+        {/* FEATURES GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl p-8 hover:border-orange-500/30 group transition-all"
+              viewport={{ once: true }}
+              className="bg-card border border-border rounded-2xl p-8 hover:border-orange-500/40 hover:shadow-lg transition-all duration-300 group"
             >
               <div className="text-orange-500 mb-6 group-hover:scale-110 transition-transform">
                 {feature.icon}
@@ -74,12 +91,15 @@ export default function Features() {
                 {feature.title}
               </h3>
 
-              <p className="text-slate-500 dark:text-zinc-400 text-sm">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.desc}
               </p>
+
             </motion.div>
           ))}
+
         </div>
+
       </div>
     </section>
   );

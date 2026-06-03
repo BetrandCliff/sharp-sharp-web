@@ -12,13 +12,13 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
 
-    if (!token) {
-      router.push("/auth/login");
-    }
-  }, [router]);
+  //   if (!token) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [router]);
 
   return (
     <div className="min-h-screen bg-background text-white flex">

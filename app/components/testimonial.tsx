@@ -1,4 +1,3 @@
-// components/Testimonials.tsx
 "use client";
 
 import Image from "next/image";
@@ -33,51 +32,58 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-24 border-t border-zinc-800 overflow-hidden bg-zinc-950"
+      className="relative py-24 border-t border-border overflow-hidden bg-background text-foreground"
     >
-      {/* BACKGROUND IMAGE */}
+      {/* Background Image */}
       <Image
         src="/images/testimonial/bg.png"
         alt="Testimonials background"
         fill
-        className="object-cover opacity-20"
+        className="object-cover opacity-10"
       />
 
-      {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-zinc-950/85" />
+      {/* Theme Overlay */}
+      <div className="absolute inset-0 bg-background/90" />
 
-      {/* orange glow */}
+      {/* Orange Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.08),transparent_60%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* heading */}
+
+        {/* Header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/80 text-[11px] text-zinc-400 mb-5">
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-card text-[11px] text-muted-foreground mb-5">
             Testimonials
           </div>
 
-          <h2 className="text-xl font-bold tracking-tight mb-3 text-white">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-3">
             Trusted by logistics teams
           </h2>
 
-          <p className="text-sm text-zinc-400 max-w-2xl mx-auto leading-6">
+          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-6">
             Businesses use Sharp-Sharp to manage deliveries, optimize fleets,
             and streamline operations across their logistics workflow.
           </p>
+
         </div>
 
-        {/* cards */}
+        {/* Cards */}
         <div className="grid md:grid-cols-3 gap-6">
+
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-zinc-900/60 backdrop-blur border border-zinc-800 hover:border-orange-500/30 rounded-2xl p-7 transition-all duration-300"
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+              }}
+              className="bg-card border border-border hover:border-orange-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-lg"
             >
-              {/* stars */}
+              {/* Stars */}
               <div className="flex items-center gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -88,29 +94,35 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              {/* content */}
-              <p className="text-sm leading-7 text-zinc-300 mb-8">
+              {/* Content */}
+              <p className="text-sm leading-7 text-muted-foreground mb-8">
                 "{testimonial.content}"
               </p>
 
-              {/* user */}
+              {/* User */}
               <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-sm font-semibold text-orange-400">
+
+                <div className="w-11 h-11 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-sm font-semibold text-orange-500">
                   {testimonial.initials}
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold">
                     {testimonial.name}
                   </p>
-                  <p className="text-xs text-zinc-500 mt-1">
+
+                  <p className="text-xs text-muted-foreground mt-1">
                     {testimonial.role}
                   </p>
                 </div>
+
               </div>
+
             </motion.div>
           ))}
+
         </div>
+
       </div>
     </section>
   );

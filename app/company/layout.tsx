@@ -12,17 +12,17 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
 
-    if (!token) {
-      router.push("/auth/login");
-    }
-  }, [router]);
+  //   if (!token) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [router]);
 
   return (
     <div className="min-h-screen bg-background text-white flex">
-      <Sidebar role="admin" />
+      <Sidebar role="company" />
 
       <main className="flex-1 ml-72 p-10">
         <Providers>{children}</Providers>

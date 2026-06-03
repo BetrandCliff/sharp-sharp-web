@@ -10,12 +10,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "services",
-        "testimonials",
-        "aboutPage",
-        "contactPage",
-      ];
+      const sections = ["services", "testimonials", "aboutPage", "contactPage"];
 
       let current = "";
 
@@ -39,48 +34,23 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     handleScroll();
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    {
-      label: "Home",
-      href: "#",
-      id: "home",
-    },
-    {
-      label: "Services",
-      href: "#services",
-      id: "services",
-    },
-    {
-      label: "Testimonials",
-      href: "#testimonials",
-      id: "testimonials",
-    },
-    {
-      label: "About",
-      href: "#aboutPage",
-      id: "aboutPage",
-    },
-    {
-      label: "Contact Us",
-      href: "#contactPage",
-      id: "contactPage",
-    },
+    { label: "Home", href: "#", id: "home" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Testimonials", href: "#testimonials", id: "testimonials" },
+    { label: "About", href: "#aboutPage", id: "aboutPage" },
+    { label: "Contact Us", href: "#contactPage", id: "contactPage" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border transition-colors duration-300">
 
-      {/* CONTAINER */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-
-        {/* NAV CONTENT */}
         <div className="h-20 flex items-center justify-between gap-6">
 
           {/* LOGO */}
@@ -89,7 +59,7 @@ export default function Navbar() {
               <Truck className="w-5 h-5 text-black" />
             </div>
 
-            <h1 className="text-md font-bold tracking-tight text-white whitespace-nowrap">
+            <h1 className="text-md font-bold tracking-tight text-foreground whitespace-nowrap">
               Sharp-Sharp
             </h1>
           </div>
@@ -103,12 +73,10 @@ export default function Navbar() {
                 <a
                   key={link.id}
                   href={link.href}
-                  className={`relative text-sm transition whitespace-nowrap
-                  
-                  ${
+                  className={`relative text-sm transition whitespace-nowrap ${
                     isActive
-                      ? "text-orange-400"
-                      : "text-zinc-300 hover:text-orange-400"
+                      ? "text-orange-500"
+                      : "text-foreground opacity-80 hover:text-orange-500"
                   }`}
                 >
                   {link.label}
@@ -125,7 +93,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3 shrink-0">
             <Link
               href="/auth/login"
-              className="text-sm font-medium text-white hover:text-orange-400 transition whitespace-nowrap"
+              className="text-sm font-medium text-foreground hover:text-orange-500 transition whitespace-nowrap"
             >
               Login
             </Link>
@@ -138,9 +106,9 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE BUTTON */}
           <button
-            className="md:hidden text-white shrink-0"
+            className="md:hidden text-foreground shrink-0"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -154,7 +122,7 @@ export default function Navbar() {
           isOpen ? "max-h-[500px]" : "max-h-0"
         }`}
       >
-        <div className="px-6 pb-6 pt-3 bg-zinc-950 border-t border-zinc-800">
+        <div className="px-6 pb-6 pt-3 bg-background border-t border-border">
           <div className="flex flex-col gap-5">
 
             {navLinks.map((link) => {
@@ -165,12 +133,10 @@ export default function Navbar() {
                   key={link.id}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`transition
-                  
-                  ${
+                  className={`transition ${
                     isActive
-                      ? "text-orange-400"
-                      : "text-zinc-300 hover:text-orange-400"
+                      ? "text-orange-500"
+                      : "text-foreground opacity-80 hover:text-orange-500"
                   }`}
                 >
                   {link.label}
@@ -180,9 +146,10 @@ export default function Navbar() {
 
             {/* MOBILE BUTTONS */}
             <div className="flex flex-col gap-3 pt-2">
+
               <Link
                 href="/auth/login"
-                className="w-full text-center border border-zinc-700 py-3 rounded-lg text-white hover:border-orange-500 transition"
+                className="w-full text-center border border-border py-3 rounded-lg text-foreground hover:border-orange-500 transition"
               >
                 Login
               </Link>
@@ -193,10 +160,13 @@ export default function Navbar() {
               >
                 Get Started
               </Link>
+
             </div>
+
           </div>
         </div>
       </div>
+
     </nav>
   );
 }

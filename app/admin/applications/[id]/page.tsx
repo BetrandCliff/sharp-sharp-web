@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { Check, X, Globe, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ApplicationDetailPage() {
   const { id } = useParams();
@@ -27,6 +28,27 @@ export default function ApplicationDetailPage() {
 
   return (
     <div className="space-y-8 text-foreground">
+
+       {/* BREADCRUMB */}
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+
+        <Link href="/admin/dashboard" className="hover:text-orange-500 transition">
+          Dashboard
+        </Link>
+
+        <span>/</span>
+
+        <Link href="/admin/applications" className="hover:text-orange-500 transition">
+          Applications
+        </Link>
+
+        <span>/</span>
+
+        <span className="text-foreground font-semibold">
+          Company Details
+        </span>
+
+      </div>
 
       {/* HEADER */}
       <div>
