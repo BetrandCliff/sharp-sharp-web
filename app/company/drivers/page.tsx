@@ -55,7 +55,7 @@ export default function DriversPage() {
             </p>
           </div>
 
-          <Link href="/company/drivers/add">
+          <Link href="/company/drivers/add/">
             <button className="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-xl text-[12px] flex items-center gap-3 font-semibold transition shadow-lg shadow-orange-500/20">
               <Plus size={14} />
               Add Driver

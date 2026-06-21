@@ -88,7 +88,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
+    <main id='aboutPage' className="min-h-screen bg-background text-foreground transition-colors duration-300">
 
       {/* HERO */}
       <section className="py-20 border-b border-border">

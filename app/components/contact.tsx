@@ -12,7 +12,7 @@ import BetaBadge from "./badge";
 export default function ContactPage() {
   return (
     <>
-      <main className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <main id="contactPage" className="min-h-screen bg-background text-foreground transition-colors duration-300">
 
         {/* HERO */}
         <section className="relative py-20 border-b border-border overflow-hidden">

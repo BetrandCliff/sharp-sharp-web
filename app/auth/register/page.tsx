@@ -26,7 +26,7 @@ type FormData = {
   ceoName: string;
   ceoEmail: string;
   ceoPhone: string;
-
+  password:string,
   ceoDocuments: File[];
 };
 
@@ -34,6 +34,7 @@ export default function MultiStepRegister() {
   const router = useRouter();
 
   const [step, setStep] = useState(1);
+   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
@@ -46,7 +47,7 @@ export default function MultiStepRegister() {
     ceoName: "",
     ceoEmail: "",
     ceoPhone: "",
-
+    password:'',
     ceoDocuments: [],
   });
 
@@ -92,13 +93,61 @@ export default function MultiStepRegister() {
     console.log("STEP IS ", step);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (step < 4) return;
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    console.log("Submitted Data:", formData);
+  if (step < 4) return;
+
+  try {
+    setLoading(true);
+
+    // IMPORTANT: send FormData because you have files
+    const form = new FormData();
+
+    form.append("companyName", formData.companyName);
+    form.append("address", formData.address);
+    form.append("phone", formData.phone);
+    form.append("email", formData.email);
+
+    form.append("ceoName", formData.ceoName);
+    form.append("ceoEmail", formData.ceoEmail);
+    form.append("ceoPhone", formData.ceoPhone);
+
+    // send password if needed
+    form.append("password", formData.password || "");
+
+    // FILES
+    if (formData.companyDocuments[0]) {
+      form.append("companyFile", formData.companyDocuments[0]);
+    }
+
+    if (formData.ceoDocuments[0]) {
+      form.append("ceoFile", formData.ceoDocuments[0]);
+    }
+
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: form,
+    });
+
+    // SAFETY FIX 👇
+const text = await res.text();
+const data = text ? JSON.parse(text) : {};
+    // const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Signup failed");
+    }
+
     router.push("/company/dashboard");
-  };
+  } catch (err: any) {
+      console.error("FULL ERROR:", err);
+
+    alert(err.message);
+  } finally {
+    setLoading(false);
+  }
+};;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-6 transition-colors duration-300">
