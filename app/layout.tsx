@@ -63,6 +63,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import Providers from "./context/themeprovider";
+import { Toaster } from "sonner";
 
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -81,6 +82,7 @@ export default function RootLayout({
     <html lang="en" className={cn( "font-sans dark", "font-sans", inter.variable)} suppressHydrationWarning>
       <body>
            <Providers>{children}</Providers>
+           <Toaster position="top-right" richColors />
       </body>
     </html>
   );
