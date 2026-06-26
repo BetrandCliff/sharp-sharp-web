@@ -16,6 +16,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<CompanyUser | null>(null);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,12 +34,16 @@ export default function Login() {
 
       const data = await res.json();
 
+        setUser(data);
+
+        // Save to localStorage
+        localStorage.setItem("company", JSON.stringify(data))
+
       if (!res.ok) {
         throw new Error(data.error);
-      }
+      } 
 
       const user = data.user;
-
       if (user?.email?.includes("admin")) {
         router.push("/admin/dashboard");
       } else {
@@ -46,7 +51,9 @@ export default function Login() {
       }
 
     } catch (err: any) {
+
       alert(err.message);
+      
     }
 
     setLoading(false);

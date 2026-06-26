@@ -35,6 +35,7 @@ export default function MultiStepRegister() {
 
   const [step, setStep] = useState(1);
    const [loading, setLoading] = useState(false);
+   const [showVerifyModal, setShowVerifyModal] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
@@ -109,9 +110,9 @@ export default function MultiStepRegister() {
     form.append("phone", formData.phone);
     form.append("email", formData.email);
 
-    form.append("ceoName", formData.ceoName);
-    form.append("ceoEmail", formData.ceoEmail);
-    form.append("ceoPhone", formData.ceoPhone);
+    // form.append("companyName", formData.ceoName);
+    // form.append("companyEmail", formData.ceoEmail);
+    // form.append("companyPhone", formData.ceoPhone);
 
     // send password if needed
     form.append("password", formData.password || "");
@@ -130,16 +131,17 @@ export default function MultiStepRegister() {
       body: form,
     });
 
-    // SAFETY FIX 👇
-const text = await res.text();
-const data = text ? JSON.parse(text) : {};
-    // const data = await res.json();
+      // SAFETY FIX 👇
+  // const text = await res.text();
+  // const data = text ? JSON.parse(text) : {};
+    const data = await res.json();
+      // const data = await res.json();
 
     if (!res.ok) {
       throw new Error(data.error || "Signup failed");
     }
-
-    router.push("/company/dashboard");
+setShowVerifyModal(true);
+    // router.push("/company/dashboard");
   } catch (err: any) {
       console.error("FULL ERROR:", err);
 
@@ -230,7 +232,7 @@ const data = text ? JSON.parse(text) : {};
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <Label htmlFor="address">
                       Company Address
                     </Label>
@@ -244,6 +246,43 @@ const data = text ? JSON.parse(text) : {};
                       className="mt-2"
                       required
                     />
+                  </div> */}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <div>
+                      <Label htmlFor="phone">
+                        Address
+                      </Label>
+
+                      <Input
+                        id="address"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        placeholder="Yaoundé, Cameroon"
+                        className="mt-2"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="email">
+                        Email Address
+                      </Label>
+
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="info@company.com"
+                        className="mt-2"
+                        required
+                      />
+                    </div>
+
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -266,16 +305,16 @@ const data = text ? JSON.parse(text) : {};
 
                     <div>
                       <Label htmlFor="email">
-                        Email Address
+                       Password
                       </Label>
 
                       <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={formData.password}
                         onChange={handleChange}
-                        placeholder="info@company.com"
+                        placeholder="************"
                         className="mt-2"
                         required
                       />
@@ -420,6 +459,36 @@ const data = text ? JSON.parse(text) : {};
             </div>
 
           </form>
+
+          {showVerifyModal && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+    <div className="bg-card border border-border rounded-2xl p-8 max-w-md w-full text-center shadow-xl">
+
+      <div className="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+        <Check className="w-7 h-7 text-black" />
+      </div>
+
+      <h2 className="text-xl font-semibold mb-2">
+        Check your email
+      </h2>
+
+      <p className="text-sm text-muted-foreground mb-6">
+        We’ve sent a verification link to your email.
+        Please click the link to activate your account before logging in.
+      </p>
+
+      <Button
+        onClick={() => router.push("/auth/login")}
+        className="bg-orange-500 text-black w-full"
+      >
+        Go to Login
+      </Button>
+
+    </div>
+  </div>
+
+  
+)}
         </div>
 
         <p className="text-center mt-6 text-sm text-muted-foreground">
