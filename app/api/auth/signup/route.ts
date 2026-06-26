@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       email,
       password,
         options: {
-    emailRedirectTo:  "http://192.168.1.236:3000/auth/callback",
+    emailRedirectTo:  "https://sharp-sharp-web-2ecg.vercel.app/auth/callback",
   },
     });
 
